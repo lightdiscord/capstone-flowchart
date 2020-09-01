@@ -1,3 +1,5 @@
+const CssPlugin = require("mini-css-extract-plugin");
+
 module.exports = {
     mode: process.env.NODE_ENV === "production" ? "production": "development",
 
@@ -14,6 +16,14 @@ module.exports = {
             {
                 test: /\.vue$/,
                 loader: "vue-loader"
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    "vue-style-loader",
+                    CssPlugin.loader,
+                    "css-loader"
+                ]
             }
         ]
     },
@@ -24,6 +34,7 @@ module.exports = {
             template: require.resolve("@capstone-flowchart/frontend/src/index.html"),
             chunks: ["frontend"]
         }),
-        new (require("vue-loader/lib/plugin"))
+        new (require("vue-loader/lib/plugin")),
+        new CssPlugin()
     ]
 };
