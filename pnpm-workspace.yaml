@@ -1,0 +1,4 @@
+packages:
+    - "packages/capstone-engine"
+    - "packages/frontend"
+    - "packages/builder"

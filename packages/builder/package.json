@@ -1,0 +1,30 @@
+{
+  "name": "@capstone-flowchart/builder",
+  "version": "0.1.0",
+  "description": "Webpack configuration for the capstone-flowchart project",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "webpack --config .",
+    "serve": "webpack-dev-server --config ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/lightdiscord/capstone-flowchart.git"
+  },
+  "author": "Arnaud Pascal <root@arnaud.sh>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lightdiscord/capstone-flowchart/issues"
+  },
+  "homepage": "https://github.com/lightdiscord/capstone-flowchart#readme",
+  "devDependencies": {
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "@capstone-flowchart/frontend": "workspace:*",
+    "clean-webpack-plugin": "^3.0.0",
+    "html-webpack-plugin": "^4.4.1",
+    "webpack": "^4.44.1"
+  }
+}
