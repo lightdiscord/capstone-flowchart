@@ -16,7 +16,8 @@
     "url": "https://github.com/lightdiscord/capstone-flowchart/issues"
   },
   "dependencies": {
-    "@capstone-flowchart/capstone-engine": "workspace:*"
+    "@capstone-flowchart/capstone-engine": "workspace:*",
+    "vue": "^2.6.12"
   },
   "homepage": "https://github.com/lightdiscord/capstone-flowchart#readme"
 }

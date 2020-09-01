@@ -9,11 +9,21 @@ module.exports = {
         filename: "[name].[hash].js"
     },
 
+    module: {
+        rules: [
+            {
+                test: /\.vue$/,
+                loader: "vue-loader"
+            }
+        ]
+    },
+
     plugins: [
         new (require("clean-webpack-plugin").CleanWebpackPlugin),
         new (require("html-webpack-plugin"))({
             template: require.resolve("@capstone-flowchart/frontend/src/index.html"),
             chunks: ["frontend"]
-        })
+        }),
+        new (require("vue-loader/lib/plugin"))
     ]
 };
