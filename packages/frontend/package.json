@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/lightdiscord/capstone-flowchart/issues"
   },
+  "dependencies": {
+    "@capstone-flowchart/capstone-engine": "workspace:*"
+  },
   "homepage": "https://github.com/lightdiscord/capstone-flowchart#readme"
 }

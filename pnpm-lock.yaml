@@ -18,7 +18,10 @@ importers:
   packages/capstone-engine:
     specifiers: {}
   packages/frontend:
-    specifiers: {}
+    dependencies:
+      '@capstone-flowchart/capstone-engine': 'link:../capstone-engine'
+    specifiers:
+      '@capstone-flowchart/capstone-engine': 'workspace:*'
 lockfileVersion: 5.1
 packages:
   /@types/anymatch/1.3.1:
