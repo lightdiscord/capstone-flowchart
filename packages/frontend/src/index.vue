@@ -1,55 +1,31 @@
 <template>
     <div>
-        <h1>Hello, world!</h1>
-        <div class="lol" ref="cytoscape">zeazeeza</div>
+        <section class="hero">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title is-1">Capstone Flowchart</h1>
+                </div>
+            </div>
+        </section>
+
+        <csf-options></csf-options>
+
+        <footer class="footer">
+            <div class="content has-text-centered">
+                <p>
+                <strong>Capstone Flowchart</strong> made by <a href="https://arnaud.sh">LightDiscord</a> and <a href="https://github.com/lightdiscord/capstone-flowchart">open-source</a>.
+                </p>
+            </div>
+        </footer>
     </div>
 </template>
 
 <script>
-import cytoscape from "cytoscape";
+import Options from "./components/options/index.vue"
 
 export default {
-    mounted() {
-        const cy = cytoscape({
-            container: this.$refs.cytoscape,
-
-            elements: [
-              { data: { id: 'n0', content: "lol" } },
-              { data: { id: 'n1', content: "mdr" } },
-              { data: { id: 'e0', source: 'n0', target: 'n1' } }
-            ],
-
-            style: [
-                {
-                    selector: "edge",
-                    style: {
-                        'target-arrow-shape': 'triangle',
-                        'curve-style': 'bezier'
-                    }
-                },
-
-                {
-                    selector: "node",
-                    style: {
-                        label: 'data(content)',
-                        width: "label",
-                        height: "label",
-                        'text-valign': 'center',
-                        'text-halign': 'center',
-                        'text-wrap': 'wrap',
-                        shape: "rectangle"
-                    }
-                }
-            ]
-        });
+    components: {
+        'csf-options': Options
     }
 };
 </script>
-
-<style>
-.lol {
-    width: 300px;
-    height: 300px;
-    display: block;
-}
-</style>
