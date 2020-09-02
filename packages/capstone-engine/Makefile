@@ -1,5 +1,5 @@
 CC = emcc
-CFLAGS = -O3 -s WASM=1 -s ENVIRONMENT=worker -s EXTRA_EXPORTED_RUNTIME_METHODS='["cwrap"]'
+CFLAGS = -O3 -s WASM=1 -s ENVIRONMENT=worker -s EXTRA_EXPORTED_RUNTIME_METHODS='["cwrap", "getValue"]'
 
 CFLAGS += $(shell pkg-config --cflags capstone)
 LDFLAGS += $(shell pkg-config --libs capstone)

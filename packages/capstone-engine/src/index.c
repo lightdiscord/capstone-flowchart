@@ -1,5 +1,6 @@
-#include <emscripten.h>
 #include <capstone/capstone.h>
+#include <emscripten.h>
+#include <stdlib.h>
 
 EMSCRIPTEN_KEEPALIVE
 int test_if_it_works(void) {
