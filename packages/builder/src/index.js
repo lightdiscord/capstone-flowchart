@@ -25,6 +25,11 @@ module.exports = {
                     "css-loader",
                     "sass-loader"
                 ]
+            },
+            {
+                test: /\.wasm$/,
+                use: "file-loader",
+                type: "javascript/auto"
             }
         ]
     },

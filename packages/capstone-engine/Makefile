@@ -1,8 +1,8 @@
 CC = emcc
-CFLAGS = -O3 -s WASM=1 -s EXTRA_EXPORTED_RUNTIME_METHODS='["cwrap"]'
+CFLAGS = -O3 -s WASM=1 -s ENVIRONMENT=worker -s EXTRA_EXPORTED_RUNTIME_METHODS='["cwrap"]'
 
-CFLAGS += `pkg-config --cflags capstone`
-LDFLAGS += `pkg-config --libs capstone`
+CFLAGS += $(shell pkg-config --cflags capstone)
+LDFLAGS += $(shell pkg-config --libs capstone)
 
 OBJECTS = src/index.o
 
@@ -11,7 +11,7 @@ OBJECTS = src/index.o
 all: capstone.mjs capstone.wasm
 
 capstone.mjs: $(OBJECTS)
-	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $^ $(LDFLAGS) -o $@
 
 capstone.wasm: capstone.mjs
 

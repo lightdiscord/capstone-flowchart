@@ -1,11 +1,23 @@
-import module from "../capstone.mjs";
+import Worker from "worker-loader!./worker";
 
-import("../capstone.wasm").then((wasm) => {
-    const capstone = module({
-        instantiateWasm: () => wasm
-    });
+const worker = new Worker();
 
-    const test_if_it_works = capstone.cwrap("test_if_it_works", "number", []);
-
-    console.log(test_if_it_works());
+worker.addEventListener("message", (event) => {
+    console.log("Receive message", event);
 });
+
+//
+// import module from "../capstone.mjs";
+// import wasm from "../capstone.wasm";
+// 
+// const capstone = module({
+//     instantiateWasm(importObject, successCallback) {
+//         return WebAssembly.instantiateStreaming(fetch(wasm), importObject)
+//             .then(({ instance }) => instance)
+//             .then(successCallback)
+//     },
+//     onRuntimeInitialized() {
+//         console.log("lol")
+//         resolve(this)
+//     }
+// });
