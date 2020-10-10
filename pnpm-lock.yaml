@@ -41,16 +41,59 @@ importers:
   packages/frontend:
     dependencies:
       '@capstone-flowchart/capstone-engine': 'link:../capstone-engine'
+      '@fortawesome/fontawesome-svg-core': 1.2.32
+      '@fortawesome/free-solid-svg-icons': 5.15.1
+      '@fortawesome/vue-fontawesome': 2.0.0_765c58e9cf3f5cae99a1172f3117b02e
       bulma: 0.9.0
       cytoscape: 3.15.2
       vue: 2.6.12
+      vuex: 3.5.1_vue@2.6.12
     specifiers:
       '@capstone-flowchart/capstone-engine': 'workspace:*'
+      '@fortawesome/fontawesome-svg-core': ^1.2.32
+      '@fortawesome/free-solid-svg-icons': ^5.15.1
+      '@fortawesome/vue-fontawesome': ^2.0.0
       bulma: ^0.9.0
       cytoscape: ^3.15.2
       vue: ^2.6.12
+      vuex: ^3.5.1
 lockfileVersion: 5.1
 packages:
+  /@fortawesome/fontawesome-common-types/0.2.32:
+    dev: false
+    engines:
+      node: '>=6'
+    requiresBuild: true
+    resolution:
+      integrity: sha512-ux2EDjKMpcdHBVLi/eWZynnPxs0BtFVXJkgHIxXRl+9ZFaHPvYamAfCzeeQFqHRjuJtX90wVnMRaMQAAlctz3w==
+  /@fortawesome/fontawesome-svg-core/1.2.32:
+    dependencies:
+      '@fortawesome/fontawesome-common-types': 0.2.32
+    dev: false
+    engines:
+      node: '>=6'
+    requiresBuild: true
+    resolution:
+      integrity: sha512-XjqyeLCsR/c/usUpdWcOdVtWFVjPbDFBTQkn2fQRrWhhUoxriQohO2RWDxLyUM8XpD+Zzg5xwJ8gqTYGDLeGaQ==
+  /@fortawesome/free-solid-svg-icons/5.15.1:
+    dependencies:
+      '@fortawesome/fontawesome-common-types': 0.2.32
+    dev: false
+    engines:
+      node: '>=6'
+    requiresBuild: true
+    resolution:
+      integrity: sha512-EFMuKtzRMNbvjab/SvJBaOOpaqJfdSap/Nl6hst7CgrJxwfORR1drdTV6q1Ib/JVzq4xObdTDcT6sqTaXMqfdg==
+  /@fortawesome/vue-fontawesome/2.0.0_765c58e9cf3f5cae99a1172f3117b02e:
+    dependencies:
+      '@fortawesome/fontawesome-svg-core': 1.2.32
+      vue: 2.6.12
+    dev: false
+    peerDependencies:
+      '@fortawesome/fontawesome-svg-core': '>= 1.2.0 < 1.3'
+      vue: ~2
+    resolution:
+      integrity: sha512-N3VKw7KzRfOm8hShUVldpinlm13HpvLBQgT63QS+aCrIRLwjoEUXY5Rcmttbfb6HkzZaeqjLqd/aZCQ53UjQpg==
   /@types/anymatch/1.3.1:
     dev: false
     resolution:
@@ -4165,6 +4208,14 @@ packages:
     dev: false
     resolution:
       integrity: sha512-uhmLFETqPPNyuLLbsKz6ioJ4q7AZHzD8ZVFNATNyICSZouqP2Sz0rotWQC8UNBF6VGSCs5abnKJoStA6JbCbfg==
+  /vuex/3.5.1_vue@2.6.12:
+    dependencies:
+      vue: 2.6.12
+    dev: false
+    peerDependencies:
+      vue: ^2.0.0
+    resolution:
+      integrity: sha512-w7oJzmHQs0FM9LXodfskhw9wgKBiaB+totOdb8sNzbTB2KDCEEwEs29NzBZFh/lmEK1t5tDmM1vtsO7ubG1DFw==
   /watchpack-chokidar2/2.0.0:
     dependencies:
       chokidar: 2.1.8

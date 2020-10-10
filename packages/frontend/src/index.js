@@ -1,12 +1,19 @@
 import Vue from "vue";
-import * as capstone from "@capstone-flowchart/capstone-engine";
+import { store } from "./store/index.js";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faUpload } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
 import "bulma/bulma.sass"
 
 import Index from "./index.vue";
 
-console.log("Hello, world!");
+library.add(faUpload);
+
+Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 export const vue = new Vue({
     el: "#app",
-    render: h => h(Index)
+    render: h => h(Index),
+    store
 });

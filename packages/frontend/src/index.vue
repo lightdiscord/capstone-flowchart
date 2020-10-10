@@ -8,7 +8,7 @@
             </div>
         </section>
 
-        <csf-options></csf-options>
+        <csf-options />
 
         <footer class="footer">
             <div class="content has-text-centered">
@@ -21,11 +21,19 @@
 </template>
 
 <script>
-import Options from "./components/options/index.vue"
+import { RESPONSES } from "@capstone-flowchart/capstone-engine/src/messages.js";
+import Status from "./components/setup/status/index.vue";
+import Options from "./components/options/index.vue";
+import * as capstone from "@capstone-flowchart/capstone-engine/src/index.js";
+import { mapState } from "vuex";
 
 export default {
     components: {
+        'csf-setup-status': Status,
         'csf-options': Options
+    },
+    computed: {
+        ...mapState(["archs", "modes"])
     }
 };
 </script>

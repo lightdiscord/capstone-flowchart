@@ -1,8 +1,5 @@
-import Worker from "worker-loader!./worker";
+import Worker from "worker-loader?worker=SharedWorker!./worker";
 
-const worker = new Worker();
+export const worker = new Worker();
 
-worker.addEventListener("message", (event) => {
-    console.log("Receive message", event);
-});
-
+console.log(worker);

@@ -3,13 +3,14 @@
         <div class="container">
             <h2 class="title">Configuration</h2>
             <p class="subtitle">Choose an arch, a mode, an offset and specify the program bytes to generate a flowchart</p>
-            <form>
+            <p>The capstone engine is currently loading, please wait to see available modes and archs.</p>
+            <form @submit.prevent="onSubmit">
                 <div class="field">
                     <label class="label" for="arch">Arch</label>
                     <div class="control">
-                        <div class="select">
-                            <select v-model="arch" id="arch">
-                                <option :value="3">CS_ARCH_X86</option>
+                        <div class="select" :class="{ 'is-loading': loading }">
+                            <select v-model="arch" id="arch" :disabled="loading">
+                                <option v-for="[key, value] in archs" :value="value" :key="key">{{ key }}</option>
                             </select>
                         </div>
                     </div>
@@ -18,9 +19,9 @@
                 <div class="field">
                     <label class="label" for="mode">Mode</label>
                     <div class="control">
-                        <div class="select">
-                            <select v-model="mode" id="mode">
-                                <option :value="(1 << 2)">CS_MODE_32</option>
+                        <div class="select" :class="{ 'is-loading': loading }">
+                            <select v-model="mode" id="mode" :disabled="loading">
+                                <option v-for="[key, value] in modes" :value="value" :key="key">{{ key }}</option>
                             </select>
                         </div>
                     </div>
@@ -29,22 +30,38 @@
                 <div class="field">
                     <label class="label" for="offset">Offset</label>
                     <div class="control">
-                        <input class="input is-danger" id="offset" type="text" v-model="offset"></input>
+                        <input class="input" :class="{ 'is-danger': !isOffsetValid }" id="offset" type="text" v-model="offsetText"></input>
                     </div>
-                    <p class="help is-danger">This offset is not valid, it must be a positive integer</p>
+                    <p v-if="isOffsetValid" class="help">The offset 0x{{ offset.toString(16) }} is valid.</p>
+                    <p v-else class="help is-danger">This offset is not valid, it must be a positive integer.</p>
                 </div>
 
                 <div class="field">
                     <label class="label" for="bytes">Bytes</label>
-                    <div class="control">
-                        <textarea class="textarea" id="bytes" v-model="bytes"></textarea>
+                    <div class="file has-name">
+                        <label class="file-label">
+                            <input class="file-input" type="file" id="bytes" ref="bytes" @change="onFileChange">
+                            <span class="file-cta">
+                                <span class="file-icon">
+                                    <font-awesome-icon icon="upload" />
+                                </span>
+                                <span class="file-label">
+                                    Choose a file…
+                                </span>
+                            </span>
+                            <span class="file-name">
+                                <template v-if="files.length == 0">No file selected</template>
+                                <template v-else-if="files.length == 1">{{ files[0].name }}</template>
+                                <template v-else>Too many files</template>
+                            </span>
+                        </label>
                     </div>
-                    <p class="help">It must be an hexadecimal string, every non hexadecimal characters are ignored</p>
+                    <p class="help">It must be the bytes of the part you want to disassemble, not an executable directly.</p>
                 </div>
 
                 <div class="field">
                     <div class="control">
-                        <button class="button is-link">Submit</button>
+                        <button class="button is-link" :disabled="loading">Submit</button>
                     </div>
                 </div>
             </form>
@@ -53,12 +70,34 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
+    computed: {
+        ...mapState(["archs", "modes"]),
+        offset() {
+            return parseInt(this.offsetText);
+        },
+        isOffsetValid() {
+            return !Number.isNaN(this.offset) && this.offset >= 0;
+        },
+        loading() {
+            return this.archs === null || this.modes === null;
+        }
+    },
     data: () => ({
-        arch: 3,
-        mode: (1 << 2),
-        offset: 0,
-        bytes: ""
-    })
+        arch: null,
+        mode: null,
+        offsetText: "0",
+        files: []
+    }),
+    methods: {
+        onFileChange() {
+            this.files = [...this.$refs.bytes.files];
+        },
+        onSubmit() {
+
+        }
+    }
 }
 </script>
