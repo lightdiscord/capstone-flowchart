@@ -19,6 +19,14 @@
         </section>
 
         <csf-options v-if="!ready" />
+        <div v-else>
+            <div v-for="[offset, items] in Object.entries(sections)">
+                <p>Section: {{ offset }}</p>
+                <ul>
+                    <li v-for="{ type, data } in items">{{ type }}: {{ data }}</li>
+                </ul>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -35,7 +43,7 @@ export default {
         'csf-options': Options
     },
     computed: {
-        ...mapState(["ready", "errors"])
+        ...mapState(["ready", "errors", "sections"])
     },
     methods: {
         ...mapMutations(["removeError"])

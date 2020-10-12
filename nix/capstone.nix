@@ -18,7 +18,6 @@ buildEmscriptenPackage rec {
 
         HOME=$TMPDIR
 
-        echo $out
         emmake make PREFIX=$out -j''${NIX_BUILD_CORES} -l''${NIX_BUILD_CORES} all
 
         runHook postBuild

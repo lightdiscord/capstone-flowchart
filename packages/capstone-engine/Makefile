@@ -1,8 +1,9 @@
 CXX = em++
-CXXFLAGS = -O3 --bind -s WASM=1 -s ENVIRONMENT=worker -s EXTRA_EXPORTED_RUNTIME_METHODS='["cwrap", "getValue"]' -std=c++17
+CXXFLAGS = -O3 --bind -s WASM=1 -s ENVIRONMENT=worker -std=c++17
 
 CXXFLAGS += $(shell pkg-config --cflags capstone)
-LDFLAGS += $(shell pkg-config --libs capstone)
+#LDFLAGS += $(shell pkg-config --libs capstone)
+LDFLAGS += -L/run/user/1000/tmp.953BgBPE1j -lcapstone
 
 OBJECTS = src/index.o
 

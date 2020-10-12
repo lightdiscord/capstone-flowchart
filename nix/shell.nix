@@ -7,6 +7,6 @@ in
 
   pkgs.mkShell {
     buildInputs = [
-      pkgs.emscripten pkgs.pkgconfig capstone
+      pkgs.emscripten capstone pkgs.pkgconfig
     ];
   }

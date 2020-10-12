@@ -9,7 +9,8 @@ export const store = new Vuex.Store({
         archs: null,
         modes: null,
         ready: false,
-        errors: []
+        errors: [],
+        sections: {}
     },
 
     mutations: {
@@ -28,12 +29,20 @@ export const store = new Vuex.Store({
 
         removeError(state, index) {
             state.errors.splice(index, 1);
+        },
+
+        finished_for(state, data) {
+            console.log("finished_for", data);
+        },
+
+        new_section(state, { offset, values }) {
+            Vue.set(state.sections, offset, values)
         }
     },
 
     actions: {
         startDisassembler(context, { arch, mode, offset, bytes }) {
-            console.log("Starting disassembler");
+            console.log("Starting disassembler", arch, mode);
             worker.port.postMessage({ type: "start_disassembler", data: { arch, mode, offset, bytes } });
         }
     }
@@ -43,6 +52,10 @@ worker.port.addEventListener("message", (event) => {
     const { type, data } = event.data;
 
     store.commit(type, data);
+});
+
+worker.addEventListener("error", (event) => {
+    console.error("Worker error happened", event);
 });
 
 worker.port.start();

@@ -1,4 +1,4 @@
-#include <capstone/capstone.h>
+#include <capstone.h>
 #include <emscripten/bind.h>
 #include <stdlib.h>
 
@@ -46,6 +46,8 @@ class Instructions {
         }
 };
 
+#include <iostream>
+
 class Disassembler {
     private:
         csh handle;
@@ -53,6 +55,7 @@ class Disassembler {
     public:
         Disassembler(cs_arch arch, cs_mode mode)
         {
+            printf("wasm: cs_open: %u %u\n", arch, mode);
             result = cs_open(arch, mode, &handle);
         }
 
@@ -63,6 +66,7 @@ class Disassembler {
 
         Instructions disassemble(std::string code, size_t address)
         {
+            printf("wasm: disassemble: %zx %zu %hhx %hhx\n", address, code.length(), *(const uint8_t*)code.data(), ((const uint8_t*)code.data())[1]);
             cs_insn *instructions;
             size_t count = cs_disasm(
                     handle,
