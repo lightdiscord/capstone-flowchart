@@ -1,8 +1,9 @@
 import module from "../../capstone.mjs";
-import wasm from "../../capstone.wasm";
 
 const capstone = module({
     instantiateWasm(importObject, successCallback) {
+        const wasm = new URL("../../capstone.wasm", import.meta.url);
+
         return WebAssembly.instantiateStreaming(fetch(wasm), importObject)
             .then(({ instance }) => instance)
             .then(successCallback)

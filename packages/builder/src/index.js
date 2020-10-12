@@ -1,4 +1,7 @@
+const path = require("path");
 const CssPlugin = require("mini-css-extract-plugin");
+
+process.traceDeprecation = true;
 
 module.exports = {
     mode: process.env.NODE_ENV === "production" ? "production": "development",
@@ -8,7 +11,8 @@ module.exports = {
     },
 
     output: {
-        filename: "[name].[hash].js"
+        filename: "[name].[fullhash].js",
+        path: path.resolve(__dirname, "..", "dist")
     },
 
     module: {
@@ -25,11 +29,6 @@ module.exports = {
                     "css-loader",
                     "sass-loader"
                 ]
-            },
-            {
-                test: /\.wasm$/,
-                use: "file-loader",
-                type: "javascript/auto"
             }
         ]
     },

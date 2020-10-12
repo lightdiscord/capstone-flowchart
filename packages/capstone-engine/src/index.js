@@ -1,5 +1,3 @@
-import Worker from "worker-loader?worker=SharedWorker!./worker";
-
-export const worker = new Worker();
+export const worker = new SharedWorker(new URL("./worker", import.meta.url));
 
 console.log(worker);

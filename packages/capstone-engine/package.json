@@ -15,8 +15,5 @@
   "bugs": {
     "url": "https://github.com/lightdiscord/capstone-flowchart/issues"
   },
-  "homepage": "https://github.com/lightdiscord/capstone-flowchart#readme",
-  "devDependencies": {
-    "worker-loader": "^3.0.2"
-  }
+  "homepage": "https://github.com/lightdiscord/capstone-flowchart#readme"
 }
