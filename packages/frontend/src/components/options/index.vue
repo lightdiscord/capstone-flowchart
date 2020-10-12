@@ -61,7 +61,7 @@
 
                 <div class="field">
                     <div class="control">
-                        <button class="button is-link" :disabled="loading">Submit</button>
+                        <button class="button is-link" :disabled="!isValid">Submit</button>
                     </div>
                 </div>
             </form>
@@ -83,6 +83,9 @@ export default {
         },
         loading() {
             return this.archs === null || this.modes === null;
+        },
+        isValid() {
+            return !this.loading && this.arch != null && this.mode != null && this.isOffsetValid && this.files.length == 1;
         }
     },
     data: () => ({
@@ -95,8 +98,11 @@ export default {
         onFileChange() {
             this.files = [...this.$refs.bytes.files];
         },
-        onSubmit() {
+        async onSubmit() {
+            const { arch, mode, offset } = this;
+            const bytes = new Uint8Array(await this.files[0].arrayBuffer());
 
+            this.$store.dispatch("startDisassembler", { arch, mode, offset, bytes });
         }
     }
 }

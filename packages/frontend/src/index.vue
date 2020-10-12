@@ -4,19 +4,21 @@
             <div class="hero-body">
                 <div class="container">
                     <h1 class="title is-1">Capstone Flowchart</h1>
+                    <p class="subtitle is-3">Source code available on <a href="">GitHub</a>.</p>
                 </div>
             </div>
         </section>
 
-        <csf-options />
-
-        <footer class="footer">
-            <div class="content has-text-centered">
-                <p>
-                <strong>Capstone Flowchart</strong> made by <a href="https://arnaud.sh">LightDiscord</a> and <a href="https://github.com/lightdiscord/capstone-flowchart">open-source</a>.
-                </p>
+        <section class="section" v-if="errors.length > 0">
+            <div class="container">
+                <div v-for="(error, index) in errors" class="notification is-danger is-light">
+                  <button class="delete" @click="removeError(index)"></button>
+                  {{ error }}
+                </div>
             </div>
-        </footer>
+        </section>
+
+        <csf-options v-if="!ready" />
     </div>
 </template>
 
@@ -25,7 +27,7 @@ import { RESPONSES } from "@capstone-flowchart/capstone-engine/src/messages.js";
 import Status from "./components/setup/status/index.vue";
 import Options from "./components/options/index.vue";
 import * as capstone from "@capstone-flowchart/capstone-engine/src/index.js";
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 
 export default {
     components: {
@@ -33,7 +35,10 @@ export default {
         'csf-options': Options
     },
     computed: {
-        ...mapState(["archs", "modes"])
+        ...mapState(["ready", "errors"])
+    },
+    methods: {
+        ...mapMutations(["removeError"])
     }
 };
 </script>
