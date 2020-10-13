@@ -11,6 +11,40 @@ import { mapState } from "vuex";
 import * as d3 from "d3";
 import dagreD3 from "dagre-d3";
 
+const addSection = (graph, sections) => (offset) => {
+    if (graph.node(offset)) return;
+
+    const section = sections[offset];
+
+    const label = section.instructions
+        .map(({ address, mnemonic, opString }) => `${address.toString(16)}: ${mnemonic} ${opString}`)
+        .join("\n");
+
+    graph.setNode(offset, { label });
+
+    if (section.next) {
+        if (Array.isArray(section.next)) {
+            const [yes, no] = section.next;
+
+            graph.setEdge(offset, yes, {
+                label: "",
+                style: "stroke: #0f0; fill: transparent",
+                arrowheadStyle: "fill: #0f0; stroke: #0f0"
+            });
+            graph.setEdge(offset, no, {
+                label: "",
+                style: "stroke: #f00; fill: transparent",
+                arrowheadStyle: "fill: #f00; stroke: #f00"
+            });
+            addSection(graph, sections)(yes);
+            addSection(graph, sections)(no);
+        } else {
+            graph.setEdge(offset, section.next, { label: "" });
+            addSection(graph, sections)(section.next);
+        }
+    }
+};
+
 export default {
     props: {
         offset: Number
@@ -19,81 +53,14 @@ export default {
         ...mapState(["sections"])
     },
     mounted() {
-        console.log("lol mdr xpdr");
+        console.log("lol mdrxpdr");
         // Create a new directed graph
         const g = new dagreD3.graphlib.Graph().setGraph({});
 
-        
-        //const current = this.sections[this.offset];
-
-        //console.log(current);
-
-        for (const current of Object.values(this.sections)) {
-
-            g.setNode(
-                current.offset,
-                {
-                    label: current.instructions
-                        .map(({ address, mnemonic, opString }) => `${address.toString(16)}: ${mnemonic} ${opString}`)
-                    .join("\n")
-                }
-            );
-
+        console.log(this.sections);
+        if (this.sections && this.sections[this.offset]) {
+            addSection(g, this.sections)(this.offset);
         }
-
-        for (const current of Object.values(this.sections)) {
-            if (current.next) {
-                if (Array.isArray(current.next))
-                {
-                    const [yes, no] = current.next;
-
-                    g.setEdge(current.offset, yes, { label: "yes" });
-                    g.setEdge(current.offset, no, { label: "no" });
-                }
-                else
-                {
-                    g.setEdge(current.offset, current.next, { label: "" });
-                }
-            }
-        }
-
-        // // States and transitions from RFC 793
-        // const states = [ "CLOSED", "LISTEN", "SYN RCVD", "SYN SENT",
-        //     "ESTAB", "FINWAIT-1", "CLOSE WAIT", "FINWAIT-2",
-        //     "CLOSING", "LAST-ACK", "TIME WAIT" ];
-
-        // // Automatically label each of the nodes
-        // states.forEach(function(state) { g.setNode(state, { label: state }); });
-
-        // // Set up the edges
-        // g.setEdge("CLOSED",     "LISTEN",     { label: "open" });
-        // g.setEdge("LISTEN",     "SYN RCVD",   { label: "rcv SYN" });
-        // g.setEdge("LISTEN",     "SYN SENT",   { label: "send" });
-        // g.setEdge("LISTEN",     "CLOSED",     { label: "close" });
-        // g.setEdge("SYN RCVD",   "FINWAIT-1",  { label: "close" });
-        // g.setEdge("SYN RCVD",   "ESTAB",      { label: "rcv ACK of SYN" });
-        // g.setEdge("SYN SENT",   "SYN RCVD",   { label: "rcv SYN" });
-        // g.setEdge("SYN SENT",   "ESTAB",      { label: "rcv SYN, ACK" });
-        // g.setEdge("SYN SENT",   "CLOSED",     { label: "close" });
-        // g.setEdge("ESTAB",      "FINWAIT-1",  { label: "close" });
-        // g.setEdge("ESTAB",      "CLOSE WAIT", { label: "rcv FIN" });
-        // g.setEdge("FINWAIT-1",  "FINWAIT-2",  { label: "rcv ACK of FIN" });
-        // g.setEdge("FINWAIT-1",  "CLOSING",    { label: "rcv FIN" });
-        // g.setEdge("CLOSE WAIT", "LAST-ACK",   { label: "close" });
-        // g.setEdge("FINWAIT-2",  "TIME WAIT",  { label: "rcv FIN" });
-        // g.setEdge("CLOSING",    "TIME WAIT",  { label: "rcv ACK of FIN" });
-        // g.setEdge("LAST-ACK",   "CLOSED",     { label: "rcv ACK of FIN" });
-        // g.setEdge("TIME WAIT",  "CLOSED",     { label: "timeout=2MSL" });
-
-        // Set some general styles
-        // g.nodes().forEach(function(v) {
-        //     var node = g.node(v);
-        //     node.rx = node.ry = 5;
-        // });
-
-        // // Add some custom colors based on state
-        // g.node('CLOSED').style = "fill: #f77";
-        // g.node('ESTAB').style = "fill: #7f7";
 
         const svg = d3.select(this.$refs.svg),
             inner = svg.select("g");

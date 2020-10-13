@@ -19,8 +19,10 @@
         </section>
 
         <csf-options v-if="!ready" />
-        <div v-else>
-            <csf-graph :offset="0x08048060" />
+        <div class="section" v-else>
+            <div class="container">
+                <csf-graph :offset="0x08048060" />
+            </div>
         </div>
     </div>
 </template>
