@@ -29,16 +29,27 @@ const disassembleAt = (registry, disassembler, options, offset, port) => {
     console.log(offset, bytes);
     const instructions = disassembler.disassemble(bytes, offset);
     const values = [];
+    let next = null;
 
     for (let i = 0; i < instructions.count; i += 1) {
         const instruction = instructions.get(i);
-        const { address, mnemonic, opString } = instruction;
+        const { address, mnemonic, opString, size } = instruction;
         console.log(address, mnemonic, opString);
-        values.push({ type: "instruction", data: { address, mnemonic, opString } });
+        values.push({ address, mnemonic, opString });
         console.log("worker: disassembleAt: instruction.delete");
         instruction.delete();
         if (mnemonic == "jmp" || mnemonic == "call") {
-            disassembleAt(registry, disassembler, options, parseInt(opString, 16), port);
+            const jmp_to = parseInt(opString, 16);
+            next = jmp_to;
+            disassembleAt(registry, disassembler, options, jmp_to, port);
+            break;
+        }
+        if (mnemonic == "je") {
+            const jmp_yes = parseInt(opString, 16);
+            const jmp_no = address + size;
+            next = [jmp_yes, jmp_no];
+            disassembleAt(registry, disassembler, options, jmp_yes, port);
+            disassembleAt(registry, disassembler, options, jmp_no, port);
             break;
         }
         if (mnemonic == "ret") {
@@ -49,7 +60,7 @@ const disassembleAt = (registry, disassembler, options, offset, port) => {
     console.log("worker: disassembleAt: instructions.delete");
 
     instructions.delete();
-    port.postMessage({ type: "new_section", data: { offset, values } });
+    port.postMessage({ type: "new_section", data: { offset, instructions: values, next } });
 }
 
 self.addEventListener("connect", (event) => {

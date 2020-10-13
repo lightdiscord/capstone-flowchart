@@ -35,8 +35,8 @@ export const store = new Vuex.Store({
             console.log("finished_for", data);
         },
 
-        new_section(state, { offset, values }) {
-            Vue.set(state.sections, offset, values)
+        new_section(state, data) {
+            Vue.set(state.sections, data.offset, data)
         }
     },
 

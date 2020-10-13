@@ -20,12 +20,7 @@
 
         <csf-options v-if="!ready" />
         <div v-else>
-            <div v-for="[offset, items] in Object.entries(sections)">
-                <p>Section: {{ offset }}</p>
-                <ul>
-                    <li v-for="{ type, data } in items">{{ type }}: {{ data }}</li>
-                </ul>
-            </div>
+            <csf-graph :offset="0x08048060" />
         </div>
     </div>
 </template>
@@ -36,11 +31,13 @@ import Status from "./components/setup/status/index.vue";
 import Options from "./components/options/index.vue";
 import * as capstone from "@capstone-flowchart/capstone-engine/src/index.js";
 import { mapState, mapMutations } from "vuex";
+import Graph from "./components/graph/index.vue";
 
 export default {
     components: {
         'csf-setup-status': Status,
-        'csf-options': Options
+        'csf-options': Options,
+        'csf-graph': Graph
     },
     computed: {
         ...mapState(["ready", "errors", "sections"])

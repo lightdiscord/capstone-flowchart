@@ -15,6 +15,10 @@ class Instruction {
             return insn->address;
         }
 
+        uint16_t getSize() const {
+            return insn->size;
+        }
+
         std::string getMnemonic() const {
             return std::string(insn->mnemonic);
         }
@@ -88,6 +92,7 @@ class Disassembler {
 
 EMSCRIPTEN_BINDINGS(capstone) {
     emscripten::class_<Instruction>("Instruction")
+        .property("size", &Instruction::getSize)
         .property("address", &Instruction::getAddress)
         .property("mnemonic", &Instruction::getMnemonic)
         .property("opString", &Instruction::getOpString);
