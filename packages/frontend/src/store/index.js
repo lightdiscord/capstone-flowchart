@@ -10,7 +10,8 @@ export const store = new Vuex.Store({
         modes: null,
         ready: false,
         errors: [],
-        sections: {}
+        sections: {},
+        views: []
     },
 
     mutations: {
@@ -31,8 +32,8 @@ export const store = new Vuex.Store({
             state.errors.splice(index, 1);
         },
 
-        finished_for(state, data) {
-            console.log("finished_for", data);
+        finished_for(state, { offset }) {
+            state.views.push(offset);
         },
 
         new_section(state, data) {

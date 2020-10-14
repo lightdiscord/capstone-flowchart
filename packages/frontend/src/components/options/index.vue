@@ -1,9 +1,11 @@
 <template>
     <div class="section">
         <div class="container">
-            <h2 class="title">Configuration</h2>
-            <p class="subtitle">Choose an arch, a mode, an offset and specify the program bytes to generate a flowchart</p>
-            <p>The capstone engine is currently loading, please wait to see available modes and archs.</p>
+            <h2 class="title is-4">Configuration</h2>
+            <p class="subtitle is-6">Choose an arch, a mode, an offset and specify the program bytes.</p>
+
+            <p v-if="loading">The capstone engine is currently loading, please wait to see available modes and archs.</p>
+
             <form @submit.prevent="onSubmit">
                 <div class="field">
                     <label class="label" for="arch">Arch</label>

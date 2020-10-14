@@ -15,7 +15,6 @@ const addSection = (graph, sections) => (offset) => {
     if (graph.node(offset)) return;
 
     const section = sections[offset];
-
     const label = section.instructions
         .map(({ address, mnemonic, opString }) => `${address.toString(16)}: ${mnemonic} ${opString}`)
         .join("\n");

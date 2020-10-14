@@ -3,8 +3,8 @@
         <section class="hero">
             <div class="hero-body">
                 <div class="container">
-                    <h1 class="title is-1">Capstone Flowchart</h1>
-                    <p class="subtitle is-3">Source code available on <a href="">GitHub</a>.</p>
+                    <h1 class="title">Capstone flowchart</h1>
+                    <p class="subtitle">Use capstone to disassemble some bytes and follow the assembly flow.</p>
                 </div>
             </div>
         </section>
@@ -21,7 +21,14 @@
         <csf-options v-if="!ready" />
         <div class="section" v-else>
             <div class="container">
-                <csf-graph :offset="0x08048060" />
+                <div class="tabs is-boxed is-toggle">
+                    <ul>
+                        <li class="is-active" v-for="offset in views">
+                            <a><span>0x{{ offset.toString(16) }}</span></a>
+                        </li>
+                    </ul>
+                </div>
+                <csf-graph v-for="offset in views" :offset="offset" :key="offset" />
             </div>
         </div>
     </div>
@@ -42,7 +49,7 @@ export default {
         'csf-graph': Graph
     },
     computed: {
-        ...mapState(["ready", "errors", "sections"])
+        ...mapState(["ready", "errors", "sections", "views"])
     },
     methods: {
         ...mapMutations(["removeError"])

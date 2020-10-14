@@ -33,6 +33,14 @@ module.exports = {
         ]
     },
 
+    devServer: {
+        hot: true,
+        overlay: {
+            warnings: true,
+            errors: true
+        }
+    },
+
     plugins: [
         new (require("clean-webpack-plugin").CleanWebpackPlugin),
         new (require("html-webpack-plugin"))({
