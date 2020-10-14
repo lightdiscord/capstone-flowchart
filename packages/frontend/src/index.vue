@@ -21,13 +21,8 @@
         <csf-options v-if="!ready" />
         <div class="section" v-else>
             <div class="container">
-                <div class="tabs is-boxed is-toggle">
-                    <ul>
-                        <li class="is-active" v-for="offset in views">
-                            <a><span>0x{{ offset.toString(16) }}</span></a>
-                        </li>
-                    </ul>
-                </div>
+                <h2 class="title is-4">Flowchart</h2>
+                <p class="subtitle is-6">Inspect the chart using your mouse and create view from a given address.</p>
                 <csf-graph v-for="offset in views" :offset="offset" :key="offset" />
             </div>
         </div>
@@ -37,7 +32,7 @@
 <script>
 import { RESPONSES } from "@capstone-flowchart/capstone-engine/src/messages.js";
 import Status from "./components/setup/status/index.vue";
-import Options from "./components/options/index.vue";
+import Options from "./components/configuration/index.vue";
 import * as capstone from "@capstone-flowchart/capstone-engine/src/index.js";
 import { mapState, mapMutations } from "vuex";
 import Graph from "./components/graph/index.vue";

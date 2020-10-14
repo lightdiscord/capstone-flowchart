@@ -11,11 +11,13 @@ export const store = new Vuex.Store({
         ready: false,
         errors: [],
         sections: {},
-        views: []
+        views: [],
+        isLoading: true
     },
 
     mutations: {
         options(state, { archs, modes }) {
+            state.isLoading = false;
             state.archs = archs;
             state.modes = modes;
         },

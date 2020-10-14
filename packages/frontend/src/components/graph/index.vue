@@ -1,7 +1,13 @@
 <template>
-    <div>
-        <h1 class="title">Graph</h1>
-        <svg width=960 height=600 ref="svg"><g/></svg>
+    <div class="card">
+        <header class="card-header">
+            <p class="card-header-title">
+                0x{{ offset.toString(16) }}
+            </p>
+        </header>
+        <div class="card-content">
+            <svg width="100%" height="800" ref="svg"><g/></svg>
+        </div>
     </div>
 </template>
 
@@ -77,8 +83,11 @@ export default {
         render(inner, g);
 
         // Center the graph
-        const initialScale = 0.75;
-        svg.call(zoom.transform, d3.zoomIdentity.translate((svg.attr("width") - g.graph().width * initialScale) / 2, 20).scale(initialScale));
+        const initialScale = 1;
+        svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate((svg.node().width.animVal.value - g.graph().width * initialScale) / 2, 20).scale(initialScale)
+        );
 
         svg.attr('height', g.graph().height * initialScale + 40);
     }
