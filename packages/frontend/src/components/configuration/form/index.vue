@@ -49,7 +49,7 @@ export default {
             const { arch, mode, offset } = this;
             const bytes = await this.$refs.bytes.fetchBytes();
 
-            this.$store.dispatch("startDisassembler", { arch, mode, offset, bytes });
+            this.$emit("submit", { arch, mode, offset, bytes });
         }
     },
     components: {

@@ -23,11 +23,8 @@ export default {
         ...mapState(["archs", "modes", "isLoading"]),
     },
     methods: {
-        async onSubmit() {
-            // const { arch, mode, offset } = this;
-            // const bytes = new Uint8Array(await this.files[0].arrayBuffer());
-
-            // this.$store.dispatch("startDisassembler", { arch, mode, offset, bytes });
+        onSubmit({ arch, mode, offset, bytes }) {
+            this.$store.dispatch("startDisassembler", { arch, mode, offset, bytes });
         }
     },
     components: {

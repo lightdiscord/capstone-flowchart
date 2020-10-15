@@ -1,47 +1,60 @@
 <template>
     <div class="field">
         <label class="label" for="bytes">Bytes to disassemble</label>
-        <div class="file has-name">
-            <label class="file-label">
-                <input class="file-input" type="file" id="bytes" ref="bytes" @change="onFileChange">
-                <span class="file-cta">
-                    <span class="file-icon">
-                        <font-awesome-icon icon="upload" />
-                    </span>
-                    <span class="file-label">
-                        Choose a file…
-                    </span>
-                </span>
-                <span class="file-name">
-                    <template v-if="files.length == 0">No file selected</template>
-                    <template v-else-if="files.length == 1">{{ files[0].name }}</template>
-                    <template v-else>Too many files</template>
-                </span>
-            </label>
+
+        <div class="tabs">
+            <ul>
+                <li v-for="tab in tabs" :class="{ 'is-active': tab.component === component }">
+                    <a @click="view(tab.component)">
+                        <span class="icon is-small">
+                            <font-awesome-icon :icon="tab.icon" />
+                        </span>
+                        <span>{{ tab.name }}</span>
+                    </a>
+                </li>
+            </ul>
         </div>
-        <p class="help">It must be the bytes of the part you want to disassemble, not an executable directly.</p>
+
+        <component :is="component" ref="component" @validity="onValidity" />
     </div>
 </template>
 
 <script>
+import BytesFile from "./file.vue";
+import HexdumpFile from "./hexdump.vue";
 import { validityWatcher } from "../utils.js";
 
 export default {
     data: () => ({
-        files: []
+        component: 'csf-form-bytes-file',
+        tabs: [
+            {
+                name: 'File',
+                icon: 'file',
+                component: 'csf-form-bytes-file'
+            },
+            {
+                name: 'Hexdump',
+                icon: 'pencil-alt',
+                component: 'csf-form-bytes-hexdump'
+            }
+        ],
+        isValid: false
     }),
-    computed: {
-        isValid() {
-            return this.files.length == 1;
+    methods: {
+        view(component) {
+            this.component = component;
+        },
+        onValidity(validity) {
+            this.isValid = validity;
+        },
+        fetchBytes() {
+            return this.$refs.component.fetchBytes();
         }
     },
-    methods: {
-        onFileChange() {
-            this.files = [...this.$refs.bytes.files];
-        },
-        async fetchBytes() {
-            return new Uint8Array(await this.files[0].arrayBuffer());
-        }
+    components: {
+        'csf-form-bytes-file': BytesFile,
+        'csf-form-bytes-hexdump': HexdumpFile,
     },
     watch: validityWatcher
 }
