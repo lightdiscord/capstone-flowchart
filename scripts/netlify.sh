@@ -30,4 +30,7 @@ make -C packages/capstone-engine all
 npm i -g pnpm
 
 pnpm install
+
+export NODE_ENV="production"
+
 pnpm -C packages/builder run build
