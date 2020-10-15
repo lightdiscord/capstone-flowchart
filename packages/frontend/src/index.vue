@@ -30,18 +30,12 @@
 </template>
 
 <script>
-import { RESPONSES } from "@capstone-flowchart/capstone-engine/src/messages.js";
-import Status from "./components/setup/status/index.vue";
-import Options from "./components/configuration/index.vue";
-import * as capstone from "@capstone-flowchart/capstone-engine/src/index.js";
 import { mapState, mapMutations } from "vuex";
-import Graph from "./components/graph/index.vue";
 
 export default {
     components: {
-        'csf-setup-status': Status,
-        'csf-options': Options,
-        'csf-graph': Graph
+        'csf-options': () => import("./components/configuration/index.vue"),
+        'csf-graph': () => import("./components/graph/index.vue")
     },
     computed: {
         ...mapState(["ready", "errors", "sections", "views"])

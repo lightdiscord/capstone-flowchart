@@ -11,7 +11,7 @@ module.exports = {
     },
 
     output: {
-        filename: "[name].[fullhash].js",
+        filename: "[name].[contenthash].js",
         path: path.resolve(__dirname, "..", "dist")
     },
 
@@ -48,6 +48,8 @@ module.exports = {
             chunks: ["frontend"]
         }),
         new (require("vue-loader/lib/plugin")),
-        new CssPlugin()
+        new CssPlugin({
+            filename: "[name].[contenthash].css"
+        })
     ]
 };
