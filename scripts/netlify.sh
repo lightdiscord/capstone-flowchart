@@ -2,24 +2,26 @@
 
 set -e
 
+ROOT=$(mktemp -d)
+
 # Setup emscripten
 
-git clone https://github.com/emscripten-core/emsdk.git
+git clone https://github.com/emscripten-core/emsdk.git $ROOT/emsdk
 
-./emsdk/emsdk install latest
-./emsdk/emsdk activate latest
-source ./emsdk/emsdk_env.sh
+$ROOT/emsdk/emsdk install latest
+$ROOT/emsdk/emsdk activate latest
+source $ROOT/emsdk/emsdk_env.sh
 
 # Build capstone with emscripten
 
-git clone https://github.com/aquynh/capstone.git
+git clone https://github.com/aquynh/capstone.git $ROOT/capstone
 
-MAKEFLAGS="PREFIX=$PWD/capstone-lib CAPSTONE_BUILD_CORE_ONLY=yes"
+MAKEFLAGS="PREFIX=$ROOT/capstone-lib CAPSTONE_BUILD_CORE_ONLY=yes"
 
-emmake make -C capstone $MAKEFLAGS all
-emmake make -C capstone $MAKEFLAGS install
+emmake make -C $ROOT/capstone $MAKEFLAGS all
+emmake make -C $ROOT/capstone $MAKEFLAGS install
 
-export PKG_CONFIG_PATH="$PWD/capstone"
+export PKG_CONFIG_PATH="$ROOT/capstone"
 
 # Build capstone-engine wasm module
 
