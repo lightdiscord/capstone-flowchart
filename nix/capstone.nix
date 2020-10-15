@@ -12,20 +12,22 @@ buildEmscriptenPackage rec {
     };
 
     dontConfigure = true;
+    dontFixup = true;
 
     buildPhase = ''
-        runHook preBuild
+        emmake make $makeFlags -j''${NIX_BUILD_CORES} -l''${NIX_BUILD_CORES} all
+    '';
 
-        HOME=$TMPDIR
-
-        emmake make PREFIX=$out -j''${NIX_BUILD_CORES} -l''${NIX_BUILD_CORES} all
-
-        runHook postBuild
+    installPhase = ''
+        emmake make $makeFlags install
     '';
 
     checkPhase = ''
         # TODO: Write a check phase to ensure that required symbols are defined
     '';
 
-    makeFlags = [ "PREFIX=$(out)" ];
+    makeFlags = [
+        "PREFIX=$(out)"
+        "CAPSTONE_BUILD_CORE_ONLY=yes"
+    ];
 }

@@ -2,12 +2,13 @@ CXX = em++
 CXXFLAGS = -O3 --bind -s WASM=1 -s ENVIRONMENT=worker -std=c++17
 
 CXXFLAGS += $(shell pkg-config --cflags capstone)
-#LDFLAGS += $(shell pkg-config --libs capstone)
-LDFLAGS += -L/run/user/1000/tmp.953BgBPE1j -lcapstone
+LDFLAGS += $(shell pkg-config --libs capstone)
 
-OBJECTS = src/index.o
+SOURCES = src/index.cpp
 
-.PHONY: all clean
+OBJECTS = $(SOURCES:.cpp=.o)
+
+.PHONY: all clean fclean re
 
 all: capstone.mjs capstone.wasm
 
@@ -17,4 +18,9 @@ capstone.mjs: $(OBJECTS)
 capstone.wasm: capstone.mjs
 
 clean:
-	$(RM) $(OBJECTS) capstone.mjs capstone.wasm
+	$(RM) $(OBJECTS)
+
+fclean: clean
+	$(RM) capstone.mjs capstone.wasm
+
+re: fclean all

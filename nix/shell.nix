@@ -9,4 +9,6 @@ in
     buildInputs = [
       pkgs.emscripten capstone pkgs.pkgconfig
     ];
+
+    EM_CACHE = "/tmp/.csf-cache";
   }
