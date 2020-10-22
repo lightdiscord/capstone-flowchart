@@ -11,7 +11,7 @@ module.exports = {
     },
 
     output: {
-        filename: "[name].[fullhash].js",
+        filename: "assets/[id].[name].[fullhash].js",
         path: path.resolve(__dirname, "..", "dist")
     },
 
@@ -33,6 +33,12 @@ module.exports = {
         ]
     },
 
+    resolve: {
+        alias: {
+            '@': path.dirname(require.resolve("@capstone-flowchart/frontend/src"))
+        }
+    },
+
     devServer: {
         hot: true,
         overlay: {
@@ -49,7 +55,7 @@ module.exports = {
         }),
         new (require("vue-loader/lib/plugin")),
         new CssPlugin({
-            filename: "[name].[contenthash].css"
+            filename: "assets/[id].[name].[contenthash].css"
         })
     ]
 };

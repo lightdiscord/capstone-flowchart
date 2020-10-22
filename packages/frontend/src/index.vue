@@ -18,14 +18,8 @@
             </div>
         </section>
 
-        <csf-options v-if="!ready" />
-        <div class="section" v-else>
-            <div class="container">
-                <h2 class="title is-4">Flowchart</h2>
-                <p class="subtitle is-6">Inspect the chart using your mouse and create view from a given address.</p>
-                <csf-graph v-for="offset in views" :offset="offset" :key="offset" />
-            </div>
-        </div>
+        <csf-disassembly v-if="ready" />
+        <csf-options v-else />
     </div>
 </template>
 
@@ -35,10 +29,10 @@ import { mapState, mapMutations } from "vuex";
 export default {
     components: {
         'csf-options': () => import("./components/configuration/index.vue"),
-        'csf-graph': () => import("./components/graph/index.vue")
+        'csf-disassembly': () => import("./components/disassembly/index.vue")
     },
     computed: {
-        ...mapState(["ready", "errors", "sections", "views"])
+        ...mapState(["ready", "errors"])
     },
     methods: {
         ...mapMutations(["removeError"])

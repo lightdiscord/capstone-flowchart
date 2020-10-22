@@ -45,20 +45,41 @@ export const store = new Vuex.Store({
 
     actions: {
         startDisassembler(context, { arch, mode, offset, bytes }) {
-            console.log("Starting disassembler", arch, mode);
             worker.port.postMessage({ type: "start_disassembler", data: { arch, mode, offset, bytes } });
+        },
+        disassemble(context, { offset }) {
+            worker.port.postMessage({ type: "disassemble_at", data: { offset } });
         }
     }
 });
 
-worker.port.addEventListener("message", (event) => {
-    const { type, data } = event.data;
+import { match } from "@capstone-flowchart/capstone-engine/src/messaging/server";
 
-    store.commit(type, data);
+worker.port.addEventListener("message", ({ data: message }) => {
+    match(message)({
+        error(error) {
+            store.commit("error", error);
+        },
+        options({ archs, modes }) {
+            store.commit("options", { archs, modes });
+        },
+        ready() {
+            store.commit("ready", true);
+        },
+        bloc({ offset, instructions, next }) {
+            store.commit("new_section", { offset, instructions, next });
+        },
+        view(offset) {
+            store.commit("finished_for", { offset });
+        },
+        default(_, type) {
+            console.warn("Received an unhandled message of type %s from worker.", type);
+        },
+    });
 });
 
 worker.addEventListener("error", (event) => {
-    console.error("Worker error happened", event);
+    console.error("An error occured inside the worker", event);
 });
 
 worker.port.start();

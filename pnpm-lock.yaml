@@ -2,33 +2,33 @@ importers:
   packages/builder:
     dependencies:
       '@capstone-flowchart/frontend': 'link:../frontend'
-      clean-webpack-plugin: 3.0.0_webpack@5.1.2
-      css-loader: 4.2.2_webpack@5.1.2
-      file-loader: 6.1.0_webpack@5.1.2
-      html-webpack-plugin: 4.5.0_webpack@5.1.2
-      mini-css-extract-plugin: 0.11.0_webpack@5.1.2
+      clean-webpack-plugin: 3.0.0_webpack@5.1.3
+      css-loader: 4.2.2_webpack@5.1.3
+      file-loader: 6.1.0_webpack@5.1.3
+      html-webpack-plugin: 4.5.0_webpack@5.1.3
+      mini-css-extract-plugin: 1.0.0_webpack@5.1.3
       sass: 1.26.10
-      sass-loader: 10.0.1_sass@1.26.10+webpack@5.1.2
-      vue-loader: 15.9.3_61bc0eb9b98bef98af346d53c97d2847
+      sass-loader: 10.0.1_sass@1.26.10+webpack@5.1.3
+      vue-loader: 15.9.3_c279b7034c290bccdb8f0fe0a3144fd7
       vue-style-loader: 4.1.2
       vue-template-compiler: 2.6.12
-      webpack: 5.1.2_webpack-cli@4.0.0+webpack@5.1.2
-      webpack-cli: 4.0.0_29013510b666a49e52a0b1b5049377d0
+      webpack: 5.1.3_webpack-cli@4.0.0+webpack@5.1.3
+      webpack-cli: 4.0.0_5b79f13145ce486803984b86e9b0e87a
     devDependencies:
-      webpack-dev-server: 3.11.0_webpack-cli@4.0.0+webpack@5.1.2
+      webpack-dev-server: 3.11.0_webpack-cli@4.0.0+webpack@5.1.3
     specifiers:
       '@capstone-flowchart/frontend': 'workspace:*'
       clean-webpack-plugin: ^3.0.0
       css-loader: ^4.2.2
       file-loader: ^6.1.0
       html-webpack-plugin: ^4.5.0
-      mini-css-extract-plugin: ^0.11.0
+      mini-css-extract-plugin: ^1.0.0
       sass: ^1.26.10
       sass-loader: ^10.0.1
       vue-loader: ^15.9.3
       vue-style-loader: ^4.1.2
       vue-template-compiler: ^2.6.12
-      webpack: ^5.1.2
+      webpack: ^5.1.3
       webpack-cli: ^4.0.0
       webpack-dev-server: ^3.11.0
   packages/capstone-engine:
@@ -1395,15 +1395,15 @@ packages:
     dev: false
     resolution:
       integrity: sha512-2J0nE95rHXHyQ24cWjMKJ1tqB/ds8z/cyeOZxJhcb+rW+SQASVjuznUSmdz5GpVJTzU8JkhYut0D3siFDD6wsA==
-  /@webpack-cli/generators/1.0.1_1786e3f7596f8825ef12020580103aba:
+  /@webpack-cli/generators/1.0.1_25a099a81f7817df0b69314d260e68f4:
     dependencies:
-      '@webpack-cli/utils': 1.0.1_1786e3f7596f8825ef12020580103aba
+      '@webpack-cli/utils': 1.0.1_25a099a81f7817df0b69314d260e68f4
       '@webpack-cli/webpack-scaffold': 1.0.1
       colorette: 1.2.1
       log-symbols: 4.0.0
       mkdirp: 1.0.4
-      webpack: 5.1.2_webpack-cli@4.0.0+webpack@5.1.2
-      webpack-cli: 4.0.0_29013510b666a49e52a0b1b5049377d0
+      webpack: 5.1.3_webpack-cli@4.0.0+webpack@5.1.3
+      webpack-cli: 4.0.0_5b79f13145ce486803984b86e9b0e87a
       yeoman-generator: 4.12.0
     dev: false
     peerDependencies:
@@ -1419,18 +1419,18 @@ packages:
       colorette: 1.2.1
       envinfo: 7.7.3
       prettyjson: 1.2.1
-      webpack-cli: 4.0.0_29013510b666a49e52a0b1b5049377d0
+      webpack-cli: 4.0.0_5b79f13145ce486803984b86e9b0e87a
     dev: false
     peerDependencies:
       webpack-cli: 4.x.x
     resolution:
       integrity: sha512-C6OJTxTLgTjBuNKLlseQ2HHjgEGTcgIFcrJd67K3pM2LcYJNWT6VFaPzk9Go0yTZ9km9awm8sq2hW3Hm32NBeQ==
-  /@webpack-cli/init/1.0.1_1786e3f7596f8825ef12020580103aba:
+  /@webpack-cli/init/1.0.1_25a099a81f7817df0b69314d260e68f4:
     dependencies:
-      '@webpack-cli/generators': 1.0.1_1786e3f7596f8825ef12020580103aba
-      '@webpack-cli/utils': 1.0.1_1786e3f7596f8825ef12020580103aba
-      webpack: 5.1.2_webpack-cli@4.0.0+webpack@5.1.2
-      webpack-cli: 4.0.0_29013510b666a49e52a0b1b5049377d0
+      '@webpack-cli/generators': 1.0.1_25a099a81f7817df0b69314d260e68f4
+      '@webpack-cli/utils': 1.0.1_25a099a81f7817df0b69314d260e68f4
+      webpack: 5.1.3_webpack-cli@4.0.0+webpack@5.1.3
+      webpack-cli: 4.0.0_5b79f13145ce486803984b86e9b0e87a
     dev: false
     peerDependencies:
       '@webpack-cli/info': '*'
@@ -1442,8 +1442,8 @@ packages:
       integrity: sha512-OmhDC1jjhhX13mNt+emTPR7u18nrAWKOk/nIAg8XRFdZU2VUBPJbOK3/6xmqXnWKByZVJClvaeUjvgVQBnQmZw==
   /@webpack-cli/serve/1.0.1_e6f1bfad9867e9d90cec2aacdbdb11e1:
     dependencies:
-      webpack-cli: 4.0.0_29013510b666a49e52a0b1b5049377d0
-      webpack-dev-server: 3.11.0_webpack-cli@4.0.0+webpack@5.1.2
+      webpack-cli: 4.0.0_5b79f13145ce486803984b86e9b0e87a
+      webpack-dev-server: 3.11.0_webpack-cli@4.0.0+webpack@5.1.3
     dev: false
     peerDependencies:
       webpack-cli: 4.x.x
@@ -1453,10 +1453,10 @@ packages:
         optional: true
     resolution:
       integrity: sha512-WGMaTMTK6NOe29Hw1WBEok9vGLfKg5C6jWzNOS/6HH1YadR+RL+TRWRcSyc81Dzulljhk/Ree9mrDM4Np9GGOQ==
-  /@webpack-cli/utils/1.0.1_1786e3f7596f8825ef12020580103aba:
+  /@webpack-cli/utils/1.0.1_25a099a81f7817df0b69314d260e68f4:
     dependencies:
       '@webpack-cli/info': 1.0.1_webpack-cli@4.0.0
-      '@webpack-cli/init': 1.0.1_1786e3f7596f8825ef12020580103aba
+      '@webpack-cli/init': 1.0.1_25a099a81f7817df0b69314d260e68f4
       '@webpack-cli/serve': 1.0.1_e6f1bfad9867e9d90cec2aacdbdb11e1
       colorette: 1.2.1
       cross-spawn: 7.0.3
@@ -1467,8 +1467,8 @@ packages:
       got: 10.7.0
       jscodeshift: 0.7.1
       p-each-series: 2.1.0
-      webpack: 5.1.2_webpack-cli@4.0.0+webpack@5.1.2
-      webpack-cli: 4.0.0_29013510b666a49e52a0b1b5049377d0
+      webpack: 5.1.3_webpack-cli@4.0.0+webpack@5.1.3
+      webpack-cli: 4.0.0_5b79f13145ce486803984b86e9b0e87a
       yeoman-environment: 2.10.3
       yeoman-generator: 4.12.0
     dev: false
@@ -1532,6 +1532,7 @@ packages:
   /ajv-errors/1.0.1_ajv@6.12.4:
     dependencies:
       ajv: 6.12.4
+    dev: true
     peerDependencies:
       ajv: '>=5.0.0'
     resolution:
@@ -2114,11 +2115,11 @@ packages:
       node: '>= 4.0'
     resolution:
       integrity: sha512-VcMWDN54ZN/DS+g58HYL5/n4Zrqe8vHJpGA8KdgUXFU4fuP/aHNw8eld9SyEIyabIMJX/0RaY/fplOo5hYLSFA==
-  /clean-webpack-plugin/3.0.0_webpack@5.1.2:
+  /clean-webpack-plugin/3.0.0_webpack@5.1.3:
     dependencies:
       '@types/webpack': 4.41.21
       del: 4.1.1
-      webpack: 5.1.2_webpack-cli@4.0.0+webpack@5.1.2
+      webpack: 5.1.3_webpack-cli@4.0.0+webpack@5.1.3
     dev: false
     engines:
       node: '>=8.9.0'
@@ -2395,7 +2396,7 @@ packages:
       node: '>= 8'
     resolution:
       integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==
-  /css-loader/4.2.2_webpack@5.1.2:
+  /css-loader/4.2.2_webpack@5.1.3:
     dependencies:
       camelcase: 6.0.0
       cssesc: 3.0.0
@@ -2409,7 +2410,7 @@ packages:
       postcss-value-parser: 4.1.0
       schema-utils: 2.7.1
       semver: 7.3.2
-      webpack: 5.1.2_webpack-cli@4.0.0+webpack@5.1.2
+      webpack: 5.1.3_webpack-cli@4.0.0+webpack@5.1.3
     dev: false
     engines:
       node: '>= 10.13.0'
@@ -3616,11 +3617,11 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-yaduQFRKLXYOGgEn6AZau90j3ggSOyiqXU0F9JZfeXYhNa+Jk4X+s45A2zg5jns87GAFa34BBm2kXw4XpNcbdg==
-  /file-loader/6.1.0_webpack@5.1.2:
+  /file-loader/6.1.0_webpack@5.1.3:
     dependencies:
       loader-utils: 2.0.0
       schema-utils: 2.7.1
-      webpack: 5.1.2_webpack-cli@4.0.0+webpack@5.1.2
+      webpack: 5.1.3_webpack-cli@4.0.0+webpack@5.1.3
     dev: false
     engines:
       node: '>= 10.13.0'
@@ -4165,7 +4166,7 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-ZPr5MNObqnV/T9akshPKbVgyOqLmy+Bxo7juKCfTfnjNniTAMdy4hz21YQqoofMBJD2kdREaqPPdThoR78Tgxg==
-  /html-webpack-plugin/4.5.0_webpack@5.1.2:
+  /html-webpack-plugin/4.5.0_webpack@5.1.3:
     dependencies:
       '@types/html-minifier-terser': 5.1.1
       '@types/tapable': 1.0.6
@@ -4176,7 +4177,7 @@ packages:
       pretty-error: 2.1.1
       tapable: 1.1.3
       util.promisify: 1.0.0
-      webpack: 5.1.2_webpack-cli@4.0.0+webpack@5.1.2
+      webpack: 5.1.3_webpack-cli@4.0.0+webpack@5.1.3
     dev: false
     engines:
       node: '>=6.9'
@@ -5188,20 +5189,20 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-wXqjST+SLt7R009ySCglWBCFpjUygmCIfD790/kVbiGmUgfYGuB14PiTd5DwVxSV4NcYHjzMkoj5LjQZwTQLEA==
-  /mini-css-extract-plugin/0.11.0_webpack@5.1.2:
+  /mini-css-extract-plugin/1.0.0_webpack@5.1.3:
     dependencies:
-      loader-utils: 1.4.0
+      loader-utils: 2.0.0
       normalize-url: 1.9.1
-      schema-utils: 1.0.0
-      webpack: 5.1.2_webpack-cli@4.0.0+webpack@5.1.2
+      schema-utils: 3.0.0
+      webpack: 5.1.3_webpack-cli@4.0.0+webpack@5.1.3
       webpack-sources: 1.4.3
     dev: false
     engines:
-      node: '>= 6.9.0'
+      node: '>= 10.13.0'
     peerDependencies:
       webpack: ^4.4.0 || ^5.0.0
     resolution:
-      integrity: sha512-dVWGuWJlQw2lZxsxBI3hOsoxg1k3DruLR0foHQLSkQMfk+qLJbv9dUk8fjmjWQKN9ef2n54ehA2FjClAsQhrWQ==
+      integrity: sha512-IsmrPv1nkdSUtFCDrAsuv5kg0k/27sLxfXqSz8vLjnbRKrNgoRdQrUNA4MppawvD+GHLkNP6L1P93Bw50ALkbg==
   /minimalistic-assert/1.0.1:
     dev: true
     resolution:
@@ -6350,7 +6351,7 @@ packages:
   /safer-buffer/2.1.2:
     resolution:
       integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
-  /sass-loader/10.0.1_sass@1.26.10+webpack@5.1.2:
+  /sass-loader/10.0.1_sass@1.26.10+webpack@5.1.3:
     dependencies:
       klona: 2.0.3
       loader-utils: 2.0.0
@@ -6358,7 +6359,7 @@ packages:
       sass: 1.26.10
       schema-utils: 2.7.1
       semver: 7.3.2
-      webpack: 5.1.2_webpack-cli@4.0.0+webpack@5.1.2
+      webpack: 5.1.3_webpack-cli@4.0.0+webpack@5.1.3
     dev: false
     engines:
       node: '>= 10.13.0'
@@ -6390,6 +6391,7 @@ packages:
       ajv: 6.12.4
       ajv-errors: 1.0.1_ajv@6.12.4
       ajv-keywords: 3.5.2_ajv@6.12.4
+    dev: true
     engines:
       node: '>= 4'
     resolution:
@@ -6949,7 +6951,7 @@ packages:
       node: '>=6.0.0'
     resolution:
       integrity: sha512-s0ZZzd0BzYv5tLSptZooSjK8oj6C+c19p7Vqta9+6NPOf7r+fxq0cJe6/oN4LTC79sy5NY8ucOJNgwsKCSbfqg==
-  /terser-webpack-plugin/5.0.0_webpack@5.1.2:
+  /terser-webpack-plugin/5.0.0_webpack@5.1.3:
     dependencies:
       jest-worker: 26.5.0
       p-limit: 3.0.2
@@ -6957,7 +6959,7 @@ packages:
       serialize-javascript: 5.0.1
       source-map: 0.6.1
       terser: 5.3.5
-      webpack: 5.1.2_webpack-cli@4.0.0+webpack@5.1.2
+      webpack: 5.1.3_webpack-cli@4.0.0+webpack@5.1.3
     dev: false
     engines:
       node: '>= 10.13.0'
@@ -7322,16 +7324,16 @@ packages:
     dev: false
     resolution:
       integrity: sha512-BXq3jwIagosjgNVae6tkHzzIk6a8MHFtzAdwhnV5VlvPTFxDCvIttgSiHWjdGoTJvXtmRu5HacExfdarRcFhog==
-  /vue-loader/15.9.3_61bc0eb9b98bef98af346d53c97d2847:
+  /vue-loader/15.9.3_c279b7034c290bccdb8f0fe0a3144fd7:
     dependencies:
       '@vue/component-compiler-utils': 3.2.0
-      css-loader: 4.2.2_webpack@5.1.2
+      css-loader: 4.2.2_webpack@5.1.3
       hash-sum: 1.0.2
       loader-utils: 1.4.0
       vue-hot-reload-api: 2.3.4
       vue-style-loader: 4.1.2
       vue-template-compiler: 2.6.12
-      webpack: 5.1.2_webpack-cli@4.0.0+webpack@5.1.2
+      webpack: 5.1.3_webpack-cli@4.0.0+webpack@5.1.3
     dev: false
     peerDependencies:
       cache-loader: '*'
@@ -7390,10 +7392,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-O84QOnr0icsbFGLS0O3bI5FswxzRr8/gHwWkDlQFskhSPryQXvrTMxjxGP4+iWYoauLoBvfDpkrOauZ+0iZpDA==
-  /webpack-cli/4.0.0_29013510b666a49e52a0b1b5049377d0:
+  /webpack-cli/4.0.0_5b79f13145ce486803984b86e9b0e87a:
     dependencies:
       '@webpack-cli/info': 1.0.1_webpack-cli@4.0.0
-      '@webpack-cli/init': 1.0.1_1786e3f7596f8825ef12020580103aba
+      '@webpack-cli/init': 1.0.1_25a099a81f7817df0b69314d260e68f4
       '@webpack-cli/serve': 1.0.1_e6f1bfad9867e9d90cec2aacdbdb11e1
       ansi-escapes: 4.3.1
       colorette: 1.2.1
@@ -7405,7 +7407,7 @@ packages:
       interpret: 2.2.0
       rechoir: 0.7.0
       v8-compile-cache: 2.1.1
-      webpack: 5.1.2_webpack-cli@4.0.0+webpack@5.1.2
+      webpack: 5.1.3_webpack-cli@4.0.0+webpack@5.1.3
       webpack-merge: 4.2.2
     dev: false
     engines:
@@ -7430,13 +7432,13 @@ packages:
         optional: true
     resolution:
       integrity: sha512-c5NOm8jDp3qWa+Q4pDZTcT5IwPcPXdjU1ejN9e7LojHQN02sjNr4tzLrt5pwkY+zN8pQL40m14JsbC2Dh+ZJ/w==
-  /webpack-dev-middleware/3.7.2_webpack@5.1.2:
+  /webpack-dev-middleware/3.7.2_webpack@5.1.3:
     dependencies:
       memory-fs: 0.4.1
       mime: 2.4.6
       mkdirp: 0.5.5
       range-parser: 1.2.1
-      webpack: 5.1.2_webpack-cli@4.0.0+webpack@5.1.2
+      webpack: 5.1.3_webpack-cli@4.0.0+webpack@5.1.3
       webpack-log: 2.0.0
     dev: true
     engines:
@@ -7445,7 +7447,7 @@ packages:
       webpack: ^4.0.0
     resolution:
       integrity: sha512-1xC42LxbYoqLNAhV6YzTYacicgMZQTqRd27Sim9wn5hJrX3I5nxYy1SxSd4+gjUFsz1dQFj+yEe6zEVmSkeJjw==
-  /webpack-dev-server/3.11.0_webpack-cli@4.0.0+webpack@5.1.2:
+  /webpack-dev-server/3.11.0_webpack-cli@4.0.0+webpack@5.1.3:
     dependencies:
       ansi-html: 0.0.7
       bonjour: 3.5.0
@@ -7476,9 +7478,9 @@ packages:
       strip-ansi: 3.0.1
       supports-color: 6.1.0
       url: 0.11.0
-      webpack: 5.1.2_webpack-cli@4.0.0+webpack@5.1.2
-      webpack-cli: 4.0.0_29013510b666a49e52a0b1b5049377d0
-      webpack-dev-middleware: 3.7.2_webpack@5.1.2
+      webpack: 5.1.3_webpack-cli@4.0.0+webpack@5.1.3
+      webpack-cli: 4.0.0_5b79f13145ce486803984b86e9b0e87a
+      webpack-dev-middleware: 3.7.2_webpack@5.1.3
       webpack-log: 2.0.0
       ws: 6.2.1
       yargs: 13.3.2
@@ -7525,7 +7527,7 @@ packages:
       node: '>=10.13.0'
     resolution:
       integrity: sha512-A9oYz7ANQBK5EN19rUXbvNgfdfZf5U2gP0769OXsj9CvYkCR6OHOsd6OKyEy4H38GGxpsQPKIL83NC64QY6Xmw==
-  /webpack/5.1.2_webpack-cli@4.0.0+webpack@5.1.2:
+  /webpack/5.1.3_webpack-cli@4.0.0+webpack@5.1.3:
     dependencies:
       '@types/eslint-scope': 3.7.0
       '@types/estree': 0.0.45
@@ -7548,9 +7550,9 @@ packages:
       pkg-dir: 4.2.0
       schema-utils: 3.0.0
       tapable: 2.0.0
-      terser-webpack-plugin: 5.0.0_webpack@5.1.2
+      terser-webpack-plugin: 5.0.0_webpack@5.1.3
       watchpack: 2.0.0
-      webpack-cli: 4.0.0_29013510b666a49e52a0b1b5049377d0
+      webpack-cli: 4.0.0_5b79f13145ce486803984b86e9b0e87a
       webpack-sources: 2.0.1
     dev: false
     engines:
@@ -7563,7 +7565,7 @@ packages:
       webpack-cli:
         optional: true
     resolution:
-      integrity: sha512-R0DKsyNS9/jkzOTkEZ7gzEKhEQZtkD5wcHGL5Z8cwpb0l+f5PgaxLlmh60od0fSu9Wk/9w+5SIJ6sZrWyzyg9w==
+      integrity: sha512-bNBF5EOpt5a6NeCBFu0+8KJtG61cVmOb2b/a5tPNRLz3OWgDpHMbmnDkaSm3nf/UQ6ufw4PWYGVsVOAi8UfL2A==
   /websocket-driver/0.6.5:
     dependencies:
       websocket-extensions: 0.1.4

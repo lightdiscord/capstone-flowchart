@@ -1,17 +1,9 @@
 <template>
-    <div class="card">
-        <header class="card-header">
-            <p class="card-header-title">
-                0x{{ offset.toString(16) }}
-            </p>
-        </header>
-        <div class="card-content">
-            <svg width="100%" height="800" ref="svg"><g/></svg>
-        </div>
-    </div>
+    <svg width="100%" height="800" ref="svg"><g/></svg>
 </template>
 
 <script>
+import { required } from "../../configuration/form/utils.js";
 import { mapState } from "vuex";
 
 import * as d3 from "d3";
@@ -52,7 +44,7 @@ const addSection = (graph, sections) => (offset) => {
 
 export default {
     props: {
-        offset: Number
+        offset: required(Number)
     },
     computed: {
         ...mapState(["sections"])
