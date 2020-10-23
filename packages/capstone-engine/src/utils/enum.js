@@ -8,8 +8,7 @@ const match = (variants) => ({ type, data }) => (callback) => {
             return (callback[name] ?? callback.default)?.(data, type);
         }
     }
-    // TODO: Throw an error because of an invalid variant name
-    console.error("Invalid variant name received while matching.");
+    throw new Error("Invalid variant name received while matching");
 };
 
 export const create = (variants) => ({

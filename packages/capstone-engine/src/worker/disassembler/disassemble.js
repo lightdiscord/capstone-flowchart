@@ -1,13 +1,6 @@
 import { insert } from "../../utils/set";
 import * as state from "../session/state";
-import * as send from "../../messaging/server/send";
-
-function* iter(instructions) {
-    for (let index = 0; index < instructions.count; index += 1) {
-        const instruction = instructions.get(index);
-        yield instruction;
-    }
-}
+import * as send from "../../messages/server/send";
 
 const singles = ["jmp", "call"];
 const doubles = ["je", "jne"];
@@ -18,10 +11,10 @@ const inner = (session) => ({ options, disassembler, offset }) => {
 
     const bytes = options.bytes.slice(offset - options.offset);
     const instructions = disassembler.disassemble(bytes, offset);
-    const iterator = iter(instructions);
     const values = [];
 
-    for (const instruction of iterator) {
+    for (let index = 0; index < instructions.count; index += 1) {
+        const instruction = instructions.get(index);
         const { address, mnemonic, opString, size } = instruction;
 
         values.push({ address, mnemonic, opString });
@@ -35,8 +28,8 @@ const inner = (session) => ({ options, disassembler, offset }) => {
         } else if (doubles.includes(mnemonic)) {
             const yes = parseInt(opString, 16);
             const no = address + size;
-            instructions.delete();
             send.bloc({ offset, instructions: values, next: [yes, no] })(session.port);
+            instructions.delete();
             inner(session)({ options, disassembler, offset: yes });
             inner(session)({ options, disassembler, offset: no });
             return;

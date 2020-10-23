@@ -1,4 +1,4 @@
-import { match } from "../../../messaging/client";
+import { match } from "../../../messages/client";
 import { start } from "./start";
 import { disassemble } from "./disassemble";
 

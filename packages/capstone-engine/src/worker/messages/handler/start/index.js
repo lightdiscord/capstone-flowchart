@@ -1,5 +1,5 @@
 import * as state from "../../../session/state";
-import * as send from "../../../../messaging/server/send";
+import * as send from "../../../../messages/server/send";
 import * as ERRORS from "../../../errors";
 import { capstone } from "../../../wasm";
 import { disassemble } from "../../../disassembler/disassemble";

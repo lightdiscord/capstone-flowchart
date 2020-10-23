@@ -1,6 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import { worker } from "@capstone-flowchart/capstone-engine"
+import * as send from "@capstone-flowchart/capstone-engine/src/messages/client/send";
+import { match } from "@capstone-flowchart/capstone-engine/src/messages/server";
 
 Vue.use(Vuex);
 
@@ -45,15 +47,13 @@ export const store = new Vuex.Store({
 
     actions: {
         startDisassembler(context, { arch, mode, offset, bytes }) {
-            worker.port.postMessage({ type: "start_disassembler", data: { arch, mode, offset, bytes } });
+            send.start({ arch, mode, offset, bytes })(worker.port);
         },
         disassemble(context, { offset }) {
-            worker.port.postMessage({ type: "disassemble_at", data: { offset } });
+            send.disassemble({ offset })(worker.port);
         }
     }
 });
-
-import { match } from "@capstone-flowchart/capstone-engine/src/messaging/server";
 
 worker.port.addEventListener("message", ({ data: message }) => {
     match(message)({

@@ -1,6 +1,6 @@
-import emscripten from "../../capstone.mjs";
+import emscripten from "../../cpp/capstone.mjs";
 
-const url = new URL("../../capstone.wasm", import.meta.url);
+const url = new URL("../../cpp/capstone.wasm", import.meta.url);
 
 export const capstone = emscripten({
     instantiateWasm(importObject, successCallback) {
