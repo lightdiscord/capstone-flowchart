@@ -25,7 +25,7 @@ export PKG_CONFIG_PATH="$ROOT/capstone"
 
 # Build capstone-engine wasm module
 
-make -C packages/capstone-engine all
+pnpm -C packages/capstone-engine run build:wasm
 
 # Build capstone-flowchart website
 
